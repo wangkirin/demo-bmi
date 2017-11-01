@@ -1,0 +1,14 @@
+
+description = ''
+dependencies {
+  compile project(':calculator')
+    compile group: 'io.servicecomb', name: 'spring-boot-starter-provider', version:'0.3.0'
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter', version:'1.4.5.RELEASE') {
+exclude(module: 'commongs-logging')
+exclude(module: 'logback-classic')
+    }
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.4.5.RELEASE'
+    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'1.4.5.RELEASE') {
+exclude(module: 'commons-logging')
+    }
+}

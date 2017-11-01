@@ -1,0 +1,12 @@
+rootProject.name = 'bmi'
+include ':calculator'
+include ':webapp'
+include ':docker-build-config'
+include ':integration-tests:calculator-tests'
+include ':integration-tests'
+
+project(':calculator').projectDir = "$rootDir/calculator" as File
+project(':webapp').projectDir = "$rootDir/webapp" as File
+project(':docker-build-config').projectDir = "$rootDir/docker-build-config" as File
+project(':integration-tests:calculator-tests').projectDir = "$rootDir/integration-tests/calculator-tests" as File
+project(':integration-tests').projectDir = "$rootDir/integration-tests" as File
