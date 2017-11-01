@@ -1,0 +1,29 @@
+version: '2.1'
+
+services:
+  servicecenter:
+    image: "servicecomb/service-center"
+    hostname: service-center
+    ports:
+      - "30100:30100"
+
+  webapp:
+    image: "webapp:0.4.0-SNAPSHOT"
+    hostname: webapp
+    links:
+      - "servicecenter:sc.servicecomb.io"
+    environment:
+      - JAR_NAME=webapp-0.4.0-SNAPSHOT
+      - JAVA_OPTS=-Dcse.service.registry.address=http://sc.servicecomb.io:30100
+    ports:
+      - "8888:8888"
+  calculator:
+    image: "calculator:0.4.0-SNAPSHOT"
+    hostname: calculator
+    links:
+      - "servicecenter:sc.servicecomb.io"
+    environment:
+      - JAR_NAME=calculator-0.4.0-SNAPSHOT
+      - JAVA_OPTS=-Dcse.service.registry.address=http://sc.servicecomb.io:30100
+    ports:
+      - "8081:8081"

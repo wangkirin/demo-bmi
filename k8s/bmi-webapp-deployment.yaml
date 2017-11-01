@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: bmi-webapp
+  name: bmi-webapp
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: bmi-webapp
+    spec:
+      containers:
+      - env:
+        - name: JAVA_OPTS
+          value: -Dcse.service.registry.address=http://sc.servicecomb.io:30100
+        - name: JAR_NAME
+          value: webapp-0.4.0-SNAPSHOT
+        image: webapp:0.4.0-SNAPSHOT
+        name: bmi-webapp
+        ports:
+        - containerPort: 8888
+        resources:
+          requests:
+            cpu: 200m
+      restartPolicy: Always
+status: {}
